@@ -14,6 +14,7 @@ class Menu extends React.Component {
     this.props.toggleLogin();
   }
   render() {
+    const token = this.props.account.token;
     return (
       <div>
         <Navbar  color="dark" dark>
@@ -25,10 +26,20 @@ class Menu extends React.Component {
                 <Button color="secondary">Search</Button>
               </InputGroupAddon>
             </InputGroup>
-            <Button
-              color="secondary"
-              style={{margin:'0 5px'}}
-              onClick={this.onLoginClick}>Login</Button>{' '}
+            {
+              !token ? (
+                <Button
+                  color="secondary"
+                  style={{margin:'0 5px'}}
+                  onClick={this.onLoginClick}>Login</Button>
+              ) : (
+                <Button
+                  color="secondary"
+                  style={{margin:'0 5px'}}
+                  onClick={this.onLoginClick}>Hello</Button>
+              )
+            }
+
             <Link to={`/cart`}>
               <Button color="secondary">Shopping Cart</Button>{' '}
             </Link>
@@ -44,6 +55,7 @@ Menu.propTypes = {
 }
 
 const mapStateToProps = state => ({
-  item: state.item
+  item: state.item,
+  account: state.account
 })
 export default connect(mapStateToProps, { toggleLogin })(Menu);

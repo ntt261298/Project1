@@ -32,7 +32,7 @@ router.get('/verify', (req, res, next) => {
       })
     } else {
       return res.send({
-        success: false,
+        success: true,
         message: 'Good'
       })
     }
@@ -69,7 +69,7 @@ router.get('/logout', (req, res, next) => {
       })
     } else {
       return res.send({
-        success: false,
+        success: true,
         message: 'Good'
       })
     }

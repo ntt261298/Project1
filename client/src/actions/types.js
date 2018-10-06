@@ -9,3 +9,6 @@ export const ADD_TO_CART = 'ADD_TO_CART';
 export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
 export const REMOVE_STOCK_ITEM = 'REMOVE_STOCK_ITEM';
 export const UPDATE_CART_ITEM = 'UPDATE_CART_ITEM';
+export const VERIFY_TOKEN = 'VERIFY_TOKEN';
+export const USER_LOGIN = 'USER_LOGIN';
+export const USER_SIGNUP = 'USER_SIGNUP';
