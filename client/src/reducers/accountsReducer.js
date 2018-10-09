@@ -1,4 +1,4 @@
-import { VERIFY_TOKEN, USER_LOGIN, USER_SIGNUP } from '../actions/types.js';
+import { VERIFY_TOKEN, USER_LOGIN, USER_SIGNUP, USER_LOGOUT } from '../actions/types.js';
 import { setInStorage } from '../helpers/localStorage';
 
 const initialState = {
@@ -30,12 +30,20 @@ export default function(state = initialState, action) {
       }
     }
     case USER_SIGNUP:
-      if(!action.success)
+      if(!action.payload.success)
         return {
           ...state,
           signupErr: action.payload.message
         };
-      default:
-       return state;
+    case USER_LOGOUT:
+        return {
+          ...state,
+          token: '',
+          loginErr: '',
+          signupErr: ''
+        };
+
+    default:
+      return state;
   }
 }

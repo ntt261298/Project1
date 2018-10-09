@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { VERIFY_TOKEN, USER_LOGIN, USER_SIGNUP } from './types.js';
+import { VERIFY_TOKEN, USER_LOGIN, USER_SIGNUP, USER_LOGOUT } from './types.js';
 import { getFromStorage } from '../helpers/localStorage';
 
 export const verifyToken = () => dispatch => {
@@ -40,4 +40,14 @@ export const userSignup = (username, password, repassword) => dispatch => {
         payload: res.data
       })
     )
+}
+
+export const userLogout = token => dispatch => {
+    axios.get(`/api/account/logout?token=${token}`)
+    .then(res => {
+      if(res.data.success)
+        dispatch({
+          type: USER_LOGOUT,
+        })
+    })
 }

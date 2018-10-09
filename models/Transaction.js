@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 // Create Schema
-const OrderSchema = new Schema({
+const TransactionSchema = new Schema({
   usernameID: {
     type: String,
     required: true
@@ -25,4 +25,4 @@ const OrderSchema = new Schema({
   }
 });
 
-module.exports = Order = mongoose.model('order', OrderSchema);
+module.exports = Transaction = mongoose.model('transaction', TransactionSchema);

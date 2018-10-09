@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, Input, Label, Form, FormGroup } from 'reactstrap';
 import { toggleLogin } from '../../actions/itemsAction';
-import { verifyToken, userLogin, userSignup } from '../../actions/acountsAction';
+import { verifyToken, userLogin, userSignup } from '../../actions/accountsAction';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 
@@ -90,13 +90,23 @@ class Login extends React.Component {
   onLogin(e) {
     e.preventDefault();
     this.props.userLogin(this.state.loginusername, this.state.loginpassword);
-
+    this.setState({
+      loginusername: '',
+      loginpassword: '',
+      signupusername: '',
+      signuppassword: '',
+      signuprepassword: '',
+    })
   }
 
   onSignup(e) {
     e.preventDefault();
     this.props.userSignup(this.state.signupusername, this.state.signuppassword, this.state.signuprepassword);
-
+    this.setState({
+      signupusername: '',
+      signuppassword: '',
+      signuprepassword: ''
+    })
   }
 
   render() {

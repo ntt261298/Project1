@@ -1,6 +1,7 @@
 import React from 'react';
-import { Container, Row, Col, Button, Navbar, NavbarBrand, InputGroup, Input, InputGroupAddon, InputGroupText } from 'reactstrap';
+import { Container, Button, Navbar, NavbarBrand, InputGroup, Input, InputGroupAddon, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import { toggleLogin } from '../../actions/itemsAction';
+import { userLogout } from '../../actions/accountsAction';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { PropTypes } from 'prop-types';
@@ -10,9 +11,16 @@ class Menu extends React.Component {
     super(props);
     this.onLoginClick = this.onLoginClick.bind(this);
   }
+
   onLoginClick() {
     this.props.toggleLogin();
   }
+
+  onLogoutClick() {
+    this.props.toggleLogin();
+    this.props.userLogout(this.props.account.token);
+  }
+
   render() {
     const token = this.props.account.token;
     return (
@@ -33,10 +41,18 @@ class Menu extends React.Component {
                   style={{margin:'0 5px'}}
                   onClick={this.onLoginClick}>Login</Button>
               ) : (
-                <Button
-                  color="secondary"
+                <UncontrolledDropdown
                   style={{margin:'0 5px'}}
-                  onClick={this.onLoginClick}>Hello</Button>
+                  >
+                  <DropdownToggle caret>
+                    Hello
+                  </DropdownToggle>
+                  <DropdownMenu>
+                    <DropdownItem>Shopping History</DropdownItem>
+                    <DropdownItem divider />
+                    <DropdownItem onClick={this.onLogoutClick.bind(this)}>Logout</DropdownItem>
+                  </DropdownMenu>
+                </UncontrolledDropdown>
               )
             }
 
@@ -51,11 +67,12 @@ class Menu extends React.Component {
 }
 
 Menu.propTypes = {
-  toggleLogin: PropTypes.func.isRequired
+  toggleLogin: PropTypes.func.isRequired,
+  userLogout: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
   item: state.item,
   account: state.account
 })
-export default connect(mapStateToProps, { toggleLogin })(Menu);
+export default connect(mapStateToProps, { toggleLogin, userLogout })(Menu);
