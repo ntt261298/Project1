@@ -1,10 +1,11 @@
-import { VERIFY_TOKEN, USER_LOGIN, USER_SIGNUP, USER_LOGOUT } from '../actions/types.js';
+import { VERIFY_TOKEN, USER_LOGIN, USER_SIGNUP, USER_LOGOUT, USER_HISTORY } from '../actions/types.js';
 import { setInStorage } from '../helpers/localStorage';
 
 const initialState = {
   token: '',
   signupErr: '',
   loginErr: '',
+  history: [],
 };
 
 export default function(state = initialState, action) {
@@ -42,7 +43,11 @@ export default function(state = initialState, action) {
           loginErr: '',
           signupErr: ''
         };
-
+    case USER_HISTORY:
+        return {
+          ...state,
+          history: action.payload
+        };
     default:
       return state;
   }

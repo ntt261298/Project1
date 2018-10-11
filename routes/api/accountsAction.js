@@ -57,7 +57,6 @@ export const getShoppingHistory = token => dispatch => {
     .then(res => {
         dispatch({
           type: USER_HISTORY,
-          payload: res.data
         })
     })
 }

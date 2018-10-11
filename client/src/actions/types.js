@@ -13,3 +13,5 @@ export const VERIFY_TOKEN = 'VERIFY_TOKEN';
 export const USER_LOGIN = 'USER_LOGIN';
 export const USER_SIGNUP = 'USER_SIGNUP';
 export const USER_LOGOUT = 'USER_LOGOUT';
+export const USER_CHECKOUT = 'USER_CHECKOUT';
+export const USER_HISTORY = 'USER_HISTORY';

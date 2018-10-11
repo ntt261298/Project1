@@ -7,13 +7,21 @@ const TransactionSchema = new Schema({
     type: String,
     required: true
   },
-  bookID: {
+  email: {
+    type: String,
+    required: true
+  },
+  phone: {
+    type: String,
+    required: true
+  },
+  address: {
     type: String,
     required: true
   },
   orderDate: {
     type: Date,
-    defaut: Date.now
+    default: Date.now
   },
   orderBook: {
     type: String,
@@ -22,6 +30,14 @@ const TransactionSchema = new Schema({
   count: {
     type: Number,
     required: true
+  },
+  price: {
+    type: Number,
+    required: true
+  },
+  status: {
+    type: String,
+    default: 'In Processing'
   }
 });
 

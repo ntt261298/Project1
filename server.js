@@ -9,6 +9,8 @@ const userVerify = require('./routes/api/userVerify.js');
 const userSignup = require('./routes/api/userSignup.js');
 const userSignin = require('./routes/api/userSignin.js');
 const userLogout = require('./routes/api/userLogout.js');
+const transactions = require('./routes/api/transactions.js');
+const userHistory = require('./routes/api/userHistory.js');
 
 const app = express();
 
@@ -30,6 +32,8 @@ app.use('/api/account/signup', userSignup);
 app.use('/api/account/signin', userSignin);
 app.use('/api/account/verify', userVerify);
 app.use('/api/account/logout', userLogout);
+app.use('/api/transactions', transactions);
+app.use('/api/user', userHistory);
 app.use('/uploads', express.static('uploads'));
 // Serve static assets if in production
 // if(process.env.NODE_ENV === 'production') {

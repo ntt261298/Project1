@@ -53,6 +53,11 @@ class App extends Component {
             exact component={contactPage}
             token={this.props.account.token}
            />
+           <PrivateRoute
+             path='/user'
+             exact component={userPage}
+             token={this.props.account.token}
+            />
         </div>
       </Router>
     );

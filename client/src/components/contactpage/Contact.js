@@ -1,5 +1,8 @@
 import React from 'react';
 import { Col, Row, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { userCheckout } from '../../actions/cartAction';
+import { connect } from 'react-redux';
+import { PropTypes } from 'prop-types';
 
 class Contact extends React.Component {
   state = {
@@ -8,15 +11,22 @@ class Contact extends React.Component {
     Address: ''
   }
 
-  onChange(e) {
+  onChanged(e) {
     this.setState({
       [e.target.name]: e.target.value
     });
   }
 
   onSubmitClick(e) {
-    return;
-
+    const token = this.props.account.token;
+    const email = this.state.Email;
+    const phone = this.state.Phone;
+    const address = this.state.Address;
+    e.preventDefault();
+    this.props.cart.carts.map(cart => {
+      console.log(cart);
+      this.props.userCheckout(token, email, phone, address, cart.count, cart.name, cart.price);
+    })
   }
 
   render() {
@@ -40,10 +50,19 @@ class Contact extends React.Component {
           <Label for="address">Address</Label>
           <Input type="text" name="Address" onChange={this.onChanged.bind(this)} placeholder="So 1 Giai Phong Hanoi"/>
         </FormGroup>
-        <Button onClick={this.onSubmitClick.bind(this)}></Button>
+        <Button onClick={this.onSubmitClick.bind(this)}>Checkout</Button>
       </Form>
     );
   }
 }
 
-export default Contact;
+Contact.propTypes = {
+  userCheckout: PropTypes.func.isRequired
+}
+
+const mapStateToProps = state => ({
+  account: state.account,
+  cart: state.cart
+})
+
+export default connect(mapStateToProps, { userCheckout })(Contact);

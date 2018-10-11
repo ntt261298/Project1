@@ -48,7 +48,11 @@ class Menu extends React.Component {
                     Hello
                   </DropdownToggle>
                   <DropdownMenu>
-                    <DropdownItem>Shopping History</DropdownItem>
+                    <Link to='/user'>
+                      <DropdownItem>
+                        Shopping History
+                      </DropdownItem>
+                    </Link>
                     <DropdownItem divider />
                     <DropdownItem onClick={this.onLogoutClick.bind(this)}>Logout</DropdownItem>
                   </DropdownMenu>
