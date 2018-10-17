@@ -4,10 +4,10 @@ const Schema = mongoose.Schema;
 
 // Create Schema
 const BookSchema = new Schema({
-  bookImage: {
+  bookImage: [{
     type: String,
     required: true
-  },
+  }],
   name: {
     type: String,
     required: true

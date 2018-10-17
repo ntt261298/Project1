@@ -38,7 +38,11 @@ const TransactionSchema = new Schema({
   status: {
     type: String,
     default: 'In Processing'
-  }
+  },
+  // cart: {
+  //   type: Array,
+  //   required: true
+  // }
 });
 
 module.exports = Transaction = mongoose.model('transaction', TransactionSchema);
