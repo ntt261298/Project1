@@ -63,7 +63,7 @@ class Menu extends React.Component {
       <div>
         <Navbar  color="dark" dark>
           <Container>
-            <NavbarBrand href="/" className="mr-auto">NTT Shop</NavbarBrand>
+            <NavbarBrand href="/" className="mr-auto">NotMine</NavbarBrand>
             <InputGroup>
               <Input placeholder="Find product..." onChange={this.showResults.bind(this)} onKeyPress={this.onSearchEnter.bind(this)}/>
               <InputGroupAddon addonType="append">

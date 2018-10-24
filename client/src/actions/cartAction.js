@@ -36,15 +36,13 @@ export const updateCartItem = (id, count) => (
 );
 
 // checkoutCartItem
-export const userCheckout = (id, email, phone, address, count, name, price) => dispatch => {
+export const userCheckout = (id, email, phone, address, carts) => dispatch => {
     axios.post('/api/transactions', {
       id,
       email,
       phone,
       address,
-      count,
-      name,
-      price
+      carts
     })
       .then(res => {
         dispatch({

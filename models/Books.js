@@ -4,10 +4,14 @@ const Schema = mongoose.Schema;
 
 // Create Schema
 const BookSchema = new Schema({
-  bookImage: [{
+  bookImage: {
     type: String,
     required: true
-  }],
+  },
+  contentImage: {
+    type: String,
+    required: true
+  },
   name: {
     type: String,
     required: true
@@ -28,6 +32,14 @@ const BookSchema = new Schema({
     type: String,
     required: true
   },
+  des: {
+    type: String,
+    required: true
+  },
+  cateId: {
+    type: String,
+    required: true
+  }
 });
 
 module.exports = Book = mongoose.model('book', BookSchema);

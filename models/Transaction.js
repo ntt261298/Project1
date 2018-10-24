@@ -23,26 +23,14 @@ const TransactionSchema = new Schema({
     type: Date,
     default: Date.now
   },
-  orderBook: {
-    type: String,
-    required: true
-  },
-  count: {
-    type: Number,
-    required: true
-  },
-  price: {
-    type: Number,
-    required: true
-  },
   status: {
     type: String,
     default: 'In Processing'
   },
-  // cart: {
-  //   type: Array,
-  //   required: true
-  // }
+  cart: {
+    type: Array,
+    required: true
+  }
 });
 
 module.exports = Transaction = mongoose.model('transaction', TransactionSchema);

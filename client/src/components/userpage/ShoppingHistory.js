@@ -6,7 +6,6 @@ import { PropTypes } from 'prop-types';
 
 class ShoppingHistory extends React.Component {
   componentDidMount() {
-    console.log("Hi from me");
     this.props.getShoppingHistory(this.props.account.token);
   }
 
@@ -32,7 +31,7 @@ class ShoppingHistory extends React.Component {
                         <th className="text-right">Status</th>
                       </tr>
                       {allItems.history.map((item, index) => (
-                        <Item key={index} item={item} index={index} className="fade-exit"/>
+                        <Item key={index} item={item} className="fade-exit"/>
                       ))}
                     </tbody>
                   </table>
