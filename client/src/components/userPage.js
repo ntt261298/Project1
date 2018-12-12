@@ -1,12 +1,13 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '../style/user.css';
 import Menu from './layout/Menu.js';
-import Login from './layout/Login.js'
+import Login from './layout/Login.js';
+import ForgetPwd from './layout/ForgetPwd.js';
 import Footer from './layout/Footer.js';
+// import ShoppingHistory from './userpage/ShoppingHistory.js';
+import User from './userpage/User.js';
 import ShoppingHistory from './userpage/ShoppingHistory.js';
-import { Container } from 'reactstrap';
-import {BrowserRouter as Router} from 'react-router-dom';
-import Route from 'react-router-dom/Route';
 
 export default class userPage extends React.Component {
   render() {
@@ -16,10 +17,9 @@ export default class userPage extends React.Component {
           <Menu />
         </header>
         <main>
-          <Container>
-            <Login />
-            <ShoppingHistory />
-          </Container>
+          <Login />
+          <ForgetPwd />
+          <User />
         </main>
         <footer>
           <Footer />

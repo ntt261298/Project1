@@ -12,77 +12,40 @@ class BookList extends React.Component {
     this.props.getBooks()
   }
 
-  // onAddToCart() {
-  //   this.props.addtoCart();
-  // }
+  renderStar(rating) {
+    let star = [];
+    for(let i = 0; i < parseInt(rating); i++) {
+      star.push(<span class="star"><img src="../image/baseline-star_rate-18px.svg" alt=""/></span>)
+    };
+    if(rating - parseInt(rating)) {
+      star.push(<span class="star"><img src="../image/baseline-half-star_rate-18px.svg" alt=""/></span>)
+    }
+    return star;
+  }
+
   render() {
     const { books } = this.props.book;
     console.log(books);
     return (
-      <div className="book-list">
-        { books.map(({_id, bookImage}) => (
-          <CardDeck key={_id}>
-            <Card>
-              <Link to={'/detail/' + _id}>
-                <CardImg top width="100%" src={`http://localhost:5000/${bookImage}`} alt="Card image cap" />
-              </Link>
-              <CardBody>
-                <CardTitle>Card title</CardTitle>
-                <CardSubtitle>Card subtitle</CardSubtitle>
-                <CardText>This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</CardText>
-                <Button >Add to Cart</Button>
-              </CardBody>
-            </Card>
-            <Card>
-              <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=256%C3%97180&w=256&h=180" alt="Card image cap" />
-              <CardBody>
-                <CardTitle>Card title</CardTitle>
-                <CardSubtitle>Card subtitle</CardSubtitle>
-                <CardText>This card has supporting text below as a natural lead-in to additional content.</CardText>
-                <Button>Button</Button>
-              </CardBody>
-            </Card>
-            <Card>
-              <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=256%C3%97180&w=256&h=180" alt="Card image cap" />
-              <CardBody>
-                <CardTitle>Card title</CardTitle>
-                <CardSubtitle>Card subtitle</CardSubtitle>
-                <CardText>This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</CardText>
-                <Button>Button</Button>
-              </CardBody>
-            </Card>
-          </CardDeck>
+      <div className="book-home">
+        { books.slice(0, 16).map(({_id, bookImage, name, author, price, rating, des}, index) => (
+          <div className={`book-information book${index+1}`} key={_id}>
+              <div className="book-img">
+                <a href={'/detail/' + _id}>
+                  <img className="image-book" src={`http://localhost:5000/uploads/${bookImage}`} alt=""/>
+                </a>
+              </div>
+              <div className="book-inf">
+                <h2 className="name">{name}</h2>
+                {
+                  this.renderStar(rating)
+                }
+                <h5 className="author">{author}</h5>
+                <h1 className="name">${price}</h1>
+                <p className="detail-infor">{des.slice(0, 100)}...</p>
+                </div>
+          </div>
         )) }
-
-        <CardDeck>
-          <Card>
-            <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=256%C3%97180&w=256&h=180" alt="Card image cap" />
-            <CardBody>
-              <CardTitle>Card title</CardTitle>
-              <CardSubtitle>Card subtitle</CardSubtitle>
-              <CardText>This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</CardText>
-              <Button>Button</Button>
-            </CardBody>
-          </Card>
-          <Card>
-            <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=256%C3%97180&w=256&h=180" alt="Card image cap" />
-            <CardBody>
-              <CardTitle>Card title</CardTitle>
-              <CardSubtitle>Card subtitle</CardSubtitle>
-              <CardText>This card has supporting text below as a natural lead-in to additional content.</CardText>
-              <Button>Button</Button>
-            </CardBody>
-          </Card>
-          <Card>
-            <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=256%C3%97180&w=256&h=180" alt="Card image cap" />
-            <CardBody>
-              <CardTitle>Card title</CardTitle>
-              <CardSubtitle>Card subtitle</CardSubtitle>
-              <CardText>This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</CardText>
-              <Button>Button</Button>
-            </CardBody>
-          </Card>
-        </CardDeck>
       </div>
     );
   };

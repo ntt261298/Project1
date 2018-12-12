@@ -1,6 +1,6 @@
 import React from 'react';
-import { Button, Modal, ModalHeader, ModalBody, Input, Label, Form, FormGroup } from 'reactstrap';
-import { toggleLogin } from '../../actions/itemsAction';
+import { Modal} from 'reactstrap';
+import { toggleLogin, toggleForget, } from '../../actions/itemsAction';
 import { verifyToken, userLogin, userSignup } from '../../actions/accountsAction';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
@@ -18,7 +18,8 @@ class Login extends React.Component {
       signupusername: '',
       signuppassword: '',
       signuprepassword: '',
-
+      signupname: '',
+      signupemail: ''
     };
 
     this.toggle = this.toggle.bind(this);
@@ -101,12 +102,19 @@ class Login extends React.Component {
 
   onSignup(e) {
     e.preventDefault();
-    this.props.userSignup(this.state.signupusername, this.state.signuppassword, this.state.signuprepassword);
+    this.props.userSignup(this.state.signupusername, this.state.signupname, this.state.signupemail, this.state.signuppassword, this.state.signuprepassword);
     this.setState({
       signupusername: '',
+      signupname: '',
+      signupemail: '',
       signuppassword: '',
       signuprepassword: ''
     })
+  }
+
+  onForgetClick() {
+    this.props.toggleLogin();
+    this.props.toggleForget();
   }
 
   render() {
@@ -120,8 +128,8 @@ class Login extends React.Component {
             <div className="panel">
               <ul className={`panel__menu ${this.state.box}`} id="menu">
                 <hr />
-                <li onClick={this.loginClick.bind(this)}><a href="#">Login</a></li>
-                <li onClick={this.signupClick.bind(this)}><a href="#">SignUp</a></li>
+                <li onClick={this.loginClick.bind(this)}><a href="">Login</a></li>
+                <li onClick={this.signupClick.bind(this)}><a href="">SignUp</a></li>
               </ul>
               <div className="panel__wrap">
                 <div className={`panel__box ${this.state.login}`} id="signInBox">
@@ -138,7 +146,8 @@ class Login extends React.Component {
                       type="password"
                       value={this.state.loginpassword}
                       onChange={this.onLoginPasswordChanged.bind(this)}/>
-                  <input type="submit" onClick={this.onLogin.bind(this)}/>
+                  <input type="submit" style={{marginTop: '1.5rem'}} onClick={this.onLogin.bind(this)}/>
+                  <p className="forget" onClick={this.onForgetClick.bind(this)}>forget password</p>
                 </div>
                 <div className={`panel__box ${this.state.signup}`} id="signUpBox">
                   {
@@ -149,6 +158,16 @@ class Login extends React.Component {
                       type="text"
                       value={this.state.signupusername}
                       onChange={this.onSignupUsernameChanged.bind(this)}/>
+                  <label>Name: </label>
+                    <input
+                      type="text"
+                      value={this.state.signupname}
+                      onChange={this.onChange}/>
+                  <label>Email: </label>
+                    <input
+                      type="email"
+                      value={this.state.signupemail}
+                      onChange={this.onChange}/>
                   <label>Password: </label>
                     <input
                       type="password"
@@ -159,7 +178,7 @@ class Login extends React.Component {
                       type="password"
                       value={this.state.resignuppassword}
                       onChange={this.onReSignupPasswordChanged.bind(this)}/>
-                  <input type="submit" onClick={this.onSignup.bind(this)}/>
+                  <input type="submit" style={{marginTop: '1.5rem'}} onClick={this.onSignup.bind(this)}/>
                 </div>
               </div>
             </div>
@@ -172,6 +191,7 @@ class Login extends React.Component {
 
 Login.propTypes = {
   toggleLogin: PropTypes.func.isRequired,
+  toggleForget: PropTypes.func.isRequired,
   verifyToken: PropTypes.func.isRequired,
   userLogin: PropTypes.func.isRequired,
   userSignup: PropTypes.func.isRequired
@@ -182,4 +202,4 @@ const mapStateToProps = state => ({
   account: state.account
 })
 
-export default connect(mapStateToProps, { toggleLogin, verifyToken, userLogin, userSignup })(Login);
+export default connect(mapStateToProps, { toggleLogin, toggleForget, verifyToken, userLogin, userSignup })(Login);

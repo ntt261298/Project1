@@ -1,0 +1,194 @@
+<% imps = [];
+   exps = [];
+   results= [];
+  console.log('client', allImp);
+  allImp.forEach(im => {
+    if(imps.length === 0) imps.push(im);
+    else {
+      imps.forEach(imp => {
+        if(imp.bookId === im.bookId) {
+          imp.count = parseInt(imp.count) + parseInt(im.count);
+          imp.price = parseInt(imp.price) + parseInt(im.price);
+        }
+      });
+    }
+    let flag = 1;
+    imps.forEach(imp => {
+      if(imp.bookId === im.bookId) flag = 0;
+    });
+    if(flag) imps.push(im);
+  });
+
+  allExp.forEach(ex => {
+    if(exps.length === 0) exps.push(ex);
+    else {
+      exps.forEach(exp => {
+        if(exp.bookId === ex.bookId) {
+          exp.count = parseInt(exp.count) + parseInt(ex.count);
+          exp.price = parseInt(exp.price) + parseInt(ex.price);
+        };
+      });
+    }
+    let flag = 1;
+    exps.forEach(exp => {
+      if(exp.bookId === ex.bookId) flag = 0;
+    });
+    if(flag) exps.push(ex);
+  });
+
+
+  imps.forEach(imp => {
+    imp.exportCount = 0;
+    imp.exportPrice = 0;
+    imp.importCount = imp.count;
+    imp.importPrice = imp.price;
+    results.push(imp);
+  });
+  exps.forEach(exp => {
+    results.forEach(rs => {
+      if(rs.bookId === exp.bookId) {
+        rs.exportCount = exp.count;
+        rs.exportPrice = exp.price;
+      }
+    });
+    let flag = 1;
+    results.forEach(rs => {
+      if(rs.bookId === exp.bookId) flag = 0;
+    })
+    if(flag) {
+      exp.importCount = 0;
+      exp.importPrice = 0;
+      results.push(exp);
+    }
+  })
+
+
+  console.log('imp', imps);
+  console.log('exp', exps);
+  console.log('result', results);
+  let totalExportCount = results.reduce((acc, item) => { return acc + (item.exportCount) }, 0);
+  let totalImportCount = results.reduce((acc, item) => { return acc + (item.importCount) }, 0);
+  let totalExportPrice = results.reduce((acc, item) => { return acc + (item.exportPrice) }, 0);
+  let totalImportPrice = results.reduce((acc, item) => { return acc + (item.importPrice)}, 0);
+
+
+
+
+%>
+
+<% include ../layout/header.ejs %>
+        <!-- END TOPBAR -->
+        <!-- START CONTAINER -->
+        <div class="page-container row-fluid container-fluid">
+            <!-- SIDEBAR - START -->
+
+                 <% include ../layout/menu.ejs %>
+
+
+            <!--  SIDEBAR - END -->
+            <!-- START CONTENT -->
+            <section id="main-content" class=" ">
+                <section class="wrapper main-wrapper row" style=''>
+                    <div class='col-xs-12'>
+                        <div class="page-title">
+                            <div class="pull-left">
+                                <h1 class="title">Import - Export</h1>
+                            </div>
+                            <div class="pull-right hidden-xs">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-lg-12">
+                        <section class="box ">
+                            <header class="panel_header">
+                                <h2 class="title pull-left">All Activities</h2>
+                                <div class="actions panel_actions pull-right">
+                                    <a class="box_toggle fa fa-chevron-down"></a>
+                                    <a class="box_setting fa fa-cog" data-toggle="modal" href="#section-settings"></a>
+                                    <a class="box_close fa fa-times"></a>
+                                </div>
+                            </header>
+                            <div class="content-body">
+                                <div class="row">
+                                    <% if(success_msg != ''){ %>
+                                        <div class="alert alert-success"><%= success_msg%></div>
+                                   <% } %>
+                                    <div class="col-xs-12">
+                                      <label for="start">Start date:</label>
+
+                                      <input type="date" id="start" name="trip-start"
+                                      value="2018-10-20"
+                                      min="2018-01-01" max="2019-01-05" onchange="changeStartDate()">
+                                      <label for="end">End date:</label>
+
+                                      <input type="date" id="end" name="trip-start"
+                                      value="2018-12-21"
+                                      min="2018-01-01" max="2019-01-05" onchange="changeEndDate()">
+
+                                      <button type="submit" class="btn btn-primary" onclick="getExport()">View</button>
+
+                                        <!-- ********************************************** -->
+                                        <table class="display table table-hover table-condensed">
+                                            <thead>
+                                                <tr>
+                                                    <th>Product Id</th>
+                                                    <th>Product</th>
+                                                    <th>Export Count</th>
+                                                    <th style="text-align: center">Price</th>
+                                                    <th>Import Count</th>
+                                                    <th>Price</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                              <% results.forEach(function(rs){%>
+                                              <tr>
+                                                  <td><%= rs.bookId%></td>
+                                                  <td><%= rs.name%></td>
+                                                  <td><%= rs.exportCount%></td>
+                                                  <td>$<%= rs.exportPrice%></td>
+                                                  <td><%= rs.importCount%></td>
+                                                  <td>$<%= rs.importPrice%></td>
+                                              </tr>
+                                              <%})%>
+                                                <tr>
+                                                    <th>Total</th>
+                                                    <th></th>
+                                                    <th><%=totalExportCount%></th>
+                                                    <th>$<%=totalExportPrice%></th>
+                                                    <th><%=totalImportCount%></th>
+                                                    <th>$<%=totalImportPrice%></th>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <!-- ********************************************** -->
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </section>
+            </section>
+            <!-- END CONTENT -->
+            <div class="chatapi-windows ">
+</section>
+
+            </div>
+
+<% include ../layout/footer.ejs %>
+            <script>
+              let startDate = document.getElementById('start');
+              let endDate = document.getElementById('end');
+
+              const getExport = () => new Promise(function(resolve, reject) {
+                startDate = document.getElementById('start').valueAsDate.getTime();
+                endDate = document.getElementById('end').valueAsDate.getTime();
+                window.location=`http://localhost:5000/admin/manager/export/${startDate}/${endDate}`;
+                return;
+              });
+            </script>
+            <script src="TT_Admin/assets/plugins/datatables/js/jquery.dataTables.min.js" type="text/javascript"></script>
+            <script src="TT_Admin/assets/plugins/datatables/extensions/TableTools/js/dataTables.tableTools.min.js" type="text/javascript"></script>
+            <script src="TT_Admin/assets/plugins/datatables/extensions/Responsive/js/dataTables.responsive.min.js" type="text/javascript"></script>
+            <script src="TT_Admin/assets/plugins/datatables/extensions/Responsive/bootstrap/3/dataTables.bootstrap.js" type="text/javascript"></script>

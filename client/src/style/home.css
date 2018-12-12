@@ -1,0 +1,145 @@
+/* body style */
+.home-body {
+  color: var(--light);
+  padding: 0 6rem;
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-areas:
+    'nav-bar nav-bar content content content content content content'
+}
+
+.nav-bar {
+  grid-area: nav-bar;
+}
+.content {
+  grid-area: content;
+}
+
+.book-home {
+  margin-top: 20px;
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas:
+    'book1 book2 book3'
+    'book4 book5 book6'
+    'book7 book8 book9'
+    'book10 book11 book12'
+}
+.book1 {
+  grid-area: book1;
+}
+.book2 {
+  grid-area: book2;
+}
+.book3 {
+  grid-area: book3;
+}
+.book4 {
+  grid-area: book4;
+}
+.book5 {
+  grid-area: book5;
+}
+.book6 {
+  grid-area: book6;
+}
+.book7 {
+  grid-area: book8;
+}
+.book9 {
+  grid-area: book9;
+}
+.book10 {
+  grid-area: book10;
+}
+.book11 {
+  grid-area: book11;
+}
+.book12 {
+  grid-area: book12;
+}
+.book13 {
+  grid-area: book13;
+}
+.book14 {
+  grid-area: book14;
+}
+.book15 {
+  grid-area: book15;
+}
+.book16 {
+  grid-area: book16;
+}
+.image-book {
+  width: 100%;
+  height: 200px;
+}
+.book-information {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-areas:
+    'book book-inf'
+}
+.book-img {
+  grid-area: book;
+}
+.book-inf {
+  grid-area: book-inf;
+  font-size: 0.5rem;
+}
+.book-inf .name {
+  font-size: 18px;
+}
+.book-inf .author {
+  font-size: 12px;
+  color: #777777;
+}
+.book-inf .detail-infor {
+  font-size: 9px;
+}
+/* Responsive Style */
+@media screen and (max-width: 600px) {
+  .home-body {
+    margin-top: 80px;
+    padding: 0;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-areas:
+      'nav-bar'
+      'content'
+  }
+  .nav-bar {
+    padding: 0 1.5rem;
+  }
+  .book-home {
+    padding: 1rem 1.5rem;
+    margin-top: 20px;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-areas:
+      'book1'
+      'book2'
+      'book3'
+      'book4'
+      'book5'
+      'book6'
+      'book7'
+      'book8'
+      'book9'
+      'book10'
+      'book11'
+      'book12'
+  }
+
+  .carousel-inner img {
+    height: 200px;
+  }
+  .carousel-indicators {
+    z-index: 0;
+  }
+}

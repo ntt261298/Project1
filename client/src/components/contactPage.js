@@ -4,9 +4,8 @@ import Menu from './layout/Menu.js';
 import Login from './layout/Login.js'
 import Footer from './layout/Footer.js';
 import Contact from './contactpage/Contact.js';
+import ForgetPwd from './layout/ForgetPwd.js';
 import { Container } from 'reactstrap';
-import {BrowserRouter as Router} from 'react-router-dom';
-import Route from 'react-router-dom/Route';
 
 export default class contactPage extends React.Component {
   render() {
@@ -18,6 +17,7 @@ export default class contactPage extends React.Component {
         <main>
           <Container>
             <Login />
+            <ForgetPwd />
             <Contact />
           </Container>
         </main>

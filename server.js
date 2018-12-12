@@ -11,18 +11,20 @@ const expressValidator = require('express-validator');
 
 const books = require('./routes/api/books.js');
 const search = require('./routes/api/search.js');
+const comment = require('./routes/api/comment.js');
 const userVerify = require('./routes/api/userVerify.js');
 const userSignup = require('./routes/api/userSignup.js');
 const userSignin = require('./routes/api/userSignin.js');
 const userLogout = require('./routes/api/userLogout.js');
 const transactions = require('./routes/api/transactions.js');
-const userHistory = require('./routes/api/userHistory.js');
+const userInfor = require('./routes/api/userInfor.js');
 
 
 const admin = require('./routes/admin/verify.js');
 const cate = require('./routes/admin/category');
 const book = require('./routes/admin/book');
-const cart = require('./routes/admin/cart')
+const cart = require('./routes/admin/cart');
+const manager = require('./routes/admin/manager');
 
 const app = express();
 
@@ -75,12 +77,13 @@ app.use(function(req, res, next){
 });
 // User Routes
 app.use('/api/books', books);
+app.use('/api/comment', comment);
 app.use('/api/account/signup', userSignup);
 app.use('/api/account/signin', userSignin);
 app.use('/api/account/verify', userVerify);
 app.use('/api/account/logout', userLogout);
 app.use('/api/transactions', transactions);
-app.use('/api/user', userHistory);
+app.use('/api/user', userInfor);
 app.use('/api/search', search);
 app.use('/uploads', express.static('public/uploads'));
 app.use(express.static('public'));
@@ -89,6 +92,7 @@ app.use('/admin', admin);
 app.use('/admin/category', cate);
 app.use('/admin/product', book);
 app.use('/admin/cart', cart);
+app.use('/admin/manager', manager);
 
 // app.use(express.static(path.join(__dirname, 'public')));
 // Serve static assets if in production

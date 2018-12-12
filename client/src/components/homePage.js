@@ -1,13 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '../style/home.css';
 import Menu from './layout/Menu.js';
-import Login from './layout/Login.js'
-import Navs from './homepage/Navs.js';
+import Login from './layout/Login.js';
+import ForgetPwd from './layout/ForgetPwd.js';
+import Navs from './layout/Navs.js';
 import Content from './homepage/Content.js';
 import Footer from './layout/Footer.js';
-import { Container } from 'reactstrap';
-import {BrowserRouter as Router} from 'react-router-dom';
-import Route from 'react-router-dom/Route';
 
 export default class homePage extends React.Component {
   render() {
@@ -16,12 +15,11 @@ export default class homePage extends React.Component {
         <header>
           <Menu />
         </header>
-        <main className="clearfix">
-          <Container>
-            <Login />
-            <Navs />
-            <Content />
-          </Container>
+        <main className="clearfix home-body">
+          <ForgetPwd />
+          <Login />
+          <Navs />
+          <Content />
         </main>
         <footer>
           <Footer />

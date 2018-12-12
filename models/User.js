@@ -8,10 +8,32 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
+  name: {
+    type: String,
+    // required: true
+  },
+  phoneNumber: {
+    type: String
+  },
+  email: {
+    type: String,
+    unique: true
+  },
   password: {
     type: String,
     required: true
-  }
+  },
+  gender: {
+    type: String
+  },
+  birthday: {
+    type: String
+  },
+  address: {
+    type: String
+  },
+  resetPasswordToken: String,
+  resetPasswordExpires: Date
 });
 
 UserSchema.methods.generateHash = function(password) {
