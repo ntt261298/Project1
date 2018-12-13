@@ -25,6 +25,7 @@ class SearchResults extends React.Component {
 
   render() {
     const results = this.props.search.results;
+    console.log(results);
     return (
       <div className="book-list">
         { results.slice(0, 12).map(({_id, bookImage, name, author, price, rating, des}, index) => (
